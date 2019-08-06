@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "391fca14-fffd-4da9-bb40-a8c34e046008",
+		"name": "MovieLibrary",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44366/api/Movies/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44366",
+					"path": [
+						"api",
+						"Movies",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateMovie",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"MovieId\": 2,\n\t\"Title\": \"The Dark Knight\",\n\t\"Genre\": \"Action\",\n\t\"Director\": \"Christopher Nolan\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44366/api/Movies/2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44366",
+					"path": [
+						"api",
+						"Movies",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNewMovie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Title\": \"Interstellar\",\n\t\"Genre\": \"Drama\",\n\t\"Director\": \"Christopher Nolan\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44366/api/movies",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44366",
+					"path": [
+						"api",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44366/api/movies",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44366",
+					"path": [
+						"api",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
