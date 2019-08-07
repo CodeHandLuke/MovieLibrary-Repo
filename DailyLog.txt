@@ -1,0 +1,4 @@
+6 August, 2019
+- Starting the MovieLibrary project, will be creating my own REST APIs.
+- REST CRUD is created, now must test with Postman
+	a. ***Remember to Re-enable SSL certificate verification after testing the controller in Postman***

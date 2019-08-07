@@ -45,7 +45,6 @@ namespace MovieLibrary.Controllers
                 return BadRequest(ModelState);
             }
 
-			//Movie movie1 = db.Movies.Find(id);
             if (id != movie.MovieId)
             {
                 return BadRequest();
