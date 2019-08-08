@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width = device-width, initial-scale = 1">
+    <title>jQuery AJAX POST Form</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+</head>
+<body>
+        <div class="jumbotron">
+                <h1>Movie Library</h1> 
+                <p>The only library you need to store and retrieve movie information!</p> 
+              </div>
+              <div class="container">
+        </div>
+
+<div id="response">
+    <pre></pre>
+</div>
+
+<form id="my-form">
+    <input required id='create-title' type="text" name="title" placeholder="Title" />
+    <input required id='create-genre' type="text" name="genre" placeholder="Genre" />
+    <input required id='create-director' type="text" name="director" placeholder="Director" />
+
+    <button type="submit">Add a New Movie</button>
+</form>
+<br>
+<form id="edit-form">
+        <input required id='edit-title' type="text" name="edits-title" placeholder="Title" />
+        <input required id='edit-genre' type="text" name="edits-genre" placeholder="Genre" />
+        <input required id='edit-director' type="text" name="edits-director" placeholder="Director" />
+    
+        <button id="edit-sumbit" type="submit">Edit Movie Info</button>
+    </form>
+<br>
+<table id="movieTable" class='table'>
+        <thead>
+            <tr>
+                <th>Movie Title</th><th>Movie Genre</th><th>Movie Director</th><th></th>
+            </tr>
+        </thead>
+        <tbody id='tableBody'>
+
+        </tbody>
+    </table>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="./app.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
