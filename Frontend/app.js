@@ -25,11 +25,6 @@ let editing = false;
             data: JSON.stringify(dict),
             success: function( data, textStatus, jQxhr ){
                 $('#response pre').html( data );
-                // $("#tableBody").empty();
-                // document.getElementById('create-title').value = '';
-                // document.getElementById('create-genre').value = '';
-                // document.getElementById('create-director').value = '';
-                // getData();
                 location.reload();
             },
             error: function( jqXhr, textStatus, errorThrown ){
@@ -69,6 +64,7 @@ function appendDataToTable(data){
     $.each(data, function(i, d) {
         var editButton = `<button id="button-${i}">Edit</button>`; //This adds the movie index to an id in the button, so as to make each button unique
         var deleteButton = `<button id="deleteButton-${i}">Delete</button>`;
+        // var saveButton = `<button id="saveButton-${i}" style="visibility:hidden">Save</button>`; ***This is just a save button that can be created to edit within the row
         var row='<tr class="editRow">';
         row+='<td>'+d.Title+'</td>'+'<td>'+d.Genre+'</td>'+'<td>'+d.Director+'</td>'+'<td>'+editButton+'</td>'+'<td>'+deleteButton+'</td>';
         row+='</tr>';
@@ -79,20 +75,19 @@ function appendDataToTable(data){
           $('#deleteButton-'+i).on("click", function() {
             confirmDelete(d.MovieId);
           })
-        // document.getElementById('edit-submit').addEventListener('click', function() {
-        //     document.querySelector('.bg-modal').style.display = 'flex';
-        // });
-
-        // document.querySelector('.close').addEventListener('click', function(){
-        //     document.querySelector('.bg-modal').style.display = 'none';
-        // });
      });
 }
+
+// function changeEditButton(id){ ***This is a method that can change the edit button to a 'save' button. Functionality has of yet not been implemented
+//     document.getElementById(`button-${id -1}`).style.visibility = 'hidden';
+//     document.getElementById(`saveButton-${id -1}`).style.visibility = 'visible';
+// }
 
 function getById(id){
     if(editing === false){
         var endpoint = "https://localhost:44366/api/Movies";
         var foundEndpoint = endpoint+"/"+id;
+        document.getElementById('edit-form').style.visibility = 'visible';
     
         $.ajax({
         url: foundEndpoint,
@@ -114,7 +109,7 @@ function getById(id){
     });
     }
     else{
-        return alert('TESTING')
+        return alert('Please finish your previous edit by clicking the "Edit Movie Info" button.');
     }
 
 }
@@ -157,12 +152,6 @@ function putMethod(id, form){
         contentType: "application/json",
         data: JSON.stringify(dict),
         success: function(data) {
-            // $("#tableBody").empty();
-            // document.getElementById('edit-title').value = '';
-            // document.getElementById('edit-genre').value = '';
-            // document.getElementById('edit-director').value = '';
-            // id = null;
-            // getData();
             editing = true;
             location.reload();
         }
