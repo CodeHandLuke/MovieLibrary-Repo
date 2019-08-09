@@ -1,5 +1,11 @@
-// getData();
-console.log('test start')
+document.getElementById('modalButton').addEventListener('click', function() {
+    document.querySelector('.bg-modal').style.display = 'flex';
+});
+
+document.querySelector('.close').addEventListener('click', function() {
+    document.querySelector('.bg-modal').style.display = 'none';
+});
+
 let editing = false;
 
 (function($){
@@ -62,12 +68,16 @@ function getData(){
 function appendDataToTable(data){
     $.each(data, function(i, d) {
         var editButton = `<button id="button-${i}">Edit</button>`; //This adds the movie index to an id in the button, so as to make each button unique
+        var deleteButton = `<button id="deleteButton-${i}">Delete</button>`;
         var row='<tr class="editRow">';
-        row+='<td>'+d.Title+'</td>'+'<td>'+d.Genre+'</td>'+'<td>'+d.Director+'</td>'+'<td>'+editButton+'</td>';
+        row+='<td>'+d.Title+'</td>'+'<td>'+d.Genre+'</td>'+'<td>'+d.Director+'</td>'+'<td>'+editButton+'</td>'+'<td>'+deleteButton+'</td>';
         row+='</tr>';
         $('#tableBody').append(row);
         $('#button-'+i).on("click", function() {
             getById(d.MovieId);
+          })
+          $('#deleteButton-'+i).on("click", function() {
+            confirmDelete(d.MovieId);
           })
         // document.getElementById('edit-submit').addEventListener('click', function() {
         //     document.querySelector('.bg-modal').style.display = 'flex';
@@ -109,21 +119,26 @@ function getById(id){
 
 }
 
-// (function(){
-//     var MovieId = document.getElementById("edit-id")
-//     $('#edit-form').on("submit", function(e) {
-//         putMethod(MovieId, this); 
-//         e.preventDefault();
-//       })
-// })();
-
-function submitEditButton(id){
-    var MovieId = document.getElementById("edit-id")
-    $('#edit-form').on("submit", function(e) {
-        putMethod(id, this); 
-        e.preventDefault();
-      })
+function confirmDelete(id){
+    if (confirm('Are you sure you want to delete this movie?')) {
+        deleteMovie(id);
+    } else {
+        location.reload();
+    }
 }
+
+function deleteMovie(id){
+    var endpoint = "https://localhost:44366/api/Movies";
+    var foundEndpoint = endpoint+"/"+id;
+
+    $.ajax({
+    url: foundEndpoint,
+    dataType: 'json',
+    type: 'delete',
+    success: function(result){
+        location.reload();
+    }
+});
 
 function putMethod(id, form){
     var endpoint = "https://localhost:44366/api/Movies";
@@ -152,4 +167,4 @@ function putMethod(id, form){
             location.reload();
         }
       });
-}
+}}
